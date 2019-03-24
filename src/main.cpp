@@ -4,21 +4,16 @@
 #include <Adafruit_GFX.h>
 #include <Adafruit_SSD1306.h>
 #include <Joystick.h>
-#include <FastLED.h>
+
 
 #define SCREEN_WIDTH 128 // OLED display width, in pixels
 #define SCREEN_HEIGHT 64 // OLED display height, in pixels
 
-#define NUM_LEDS 4
-#define DATA_PIN 10
+
 // Declaration for an SSD1306 display connected to I2C (SDA, SCL pins)
 #define OLED_RESET     4 // Reset pin # (or -1 if sharing Arduino reset pin)
 Adafruit_SSD1306 display(SCREEN_WIDTH, SCREEN_HEIGHT, &Wire, OLED_RESET);
 
-int FastLED_fade_counter = 255;
-
-int gCurrentPatternNumber = 0; // Index number of which pattern is current
-int gHue = 0; // rotating "base color" used by many of the patterns
 
 int viewVal = 1;
 Joystick_ Joystick(JOYSTICK_DEFAULT_REPORT_ID,JOYSTICK_TYPE_GAMEPAD,
@@ -28,7 +23,7 @@ Joystick_ Joystick(JOYSTICK_DEFAULT_REPORT_ID,JOYSTICK_TYPE_GAMEPAD,
   false, false,          // No rudder or throttle
   false, false, false);  // No accelerator, brake, or steering
 
-CRGB leds[NUM_LEDS];
+
 
 int button1 = 7;
 int button2 = 6;
@@ -56,15 +51,7 @@ void setup() {
   pinMode(button6, INPUT_PULLUP);
 
   Joystick.begin();
-  FastLED.addLeds<NEOPIXEL, DATA_PIN>(leds, NUM_LEDS);
-  FastLED.setBrightness(255);
 
-  leds[0] = CRGB::Red;
-  leds[1] = CRGB::Orange;
-  leds[2] = CRGB::Yellow;
-  leds[3] = CRGB::Green;
-  leds[4] = CRGB::Blue;
-  FastLED.show();
 
 }
 
@@ -133,7 +120,6 @@ while (viewVal == 1) {
   int button5Val = digitalRead(button5);
   int button6Val = digitalRead(button6);
 
-  FastLED.show();
 
   int potVal = analogRead(A1);
   int dispVal = map(potVal,0,1023,1,6);
@@ -194,83 +180,58 @@ while (viewVal == 1) {
 
 
   if(button1Val == LOW){
-    for(int dot = 0; dot <= NUM_LEDS; dot++)
-     {   leds[0] = CRGB::Cyan;
-         FastLED.show();
-         leds[0] = CRGB::Red;
-         Joystick.setButton(1, 1);
-         delay(50);
-         Joystick.setButton(1, 0);
-         }
+    Joystick.setButton(1, 1);
+    delay(50);
+    Joystick.setButton(1, 0);
+   }
 
-
-
-  }
-
-  if(button2Val == LOW){
-    for(int dot = 0; dot <= NUM_LEDS; dot++)
-     {   leds[1] = CRGB::Blue;
-         FastLED.show();
-         leds[1] = CRGB::Orange;
-         Joystick.setButton(2, 1);
-         delay(50);
-         Joystick.setButton(2, 0);
-         }
 
 
 
-  }
+  if(button2Val == LOW){
+    Joystick.setButton(2, 1);
+    delay(50);
+    Joystick.setButton(2, 0);
+   }
+
+
+
+
   if(button3Val == LOW){
-    for(int dot = 0; dot <= NUM_LEDS; dot++)
-     {   leds[2] = CRGB::Blue;
-         FastLED.show();
-         leds[2] = CRGB::Yellow;
-         Joystick.setButton(3, 1);
-         delay(50);
-         Joystick.setButton(3, 0);
-         }
+    Joystick.setButton(3, 1);
+    delay(50);
+    Joystick.setButton(3, 0);
+   }
 
 
 
-  }
+
   if(button4Val == LOW){
-    for(int dot = 0; dot <= NUM_LEDS; dot++)
-     {   leds[3] = CRGB::Purple;
-         FastLED.show();
-         leds[3] = CRGB::Green;
-         Joystick.setButton(4, 1);
-         delay(50);
-         Joystick.setButton(4, 0);
-         }
+    Joystick.setButton(4, 1);
+    delay(50);
+    Joystick.setButton(4, 0);
+   }
 
 
 
-  }
+
   if(button5Val == LOW){
-    for(int dot = 0; dot <= NUM_LEDS; dot++)
-     {   leds[4] = CRGB::Green;
-         FastLED.show();
-         leds[4] = CRGB::Blue;
-         Joystick.setButton(5, 1);
-         delay(50);
-         Joystick.setButton(5, 0);
-         }
+   Joystick.setButton(5, 1);
+   delay(50);
+   Joystick.setButton(5, 0);
+    }
+
+
+
+  if(button6Val == LOW){
+    Joystick.setButton(6, 1);
+    delay(50);
+    Joystick.setButton(6, 0);
+   }
+
+
 
 }
-
-if(button6Val == LOW){
-  for(int dot = 0; dot <= NUM_LEDS; dot++)
-   {   leds[4] = CRGB::Green;
-       FastLED.show();
-       leds[4] = CRGB::Blue;
-       Joystick.setButton(6, 1);
-       delay(50);
-       Joystick.setButton(6, 0);
-       }
-
-}
-
-
 // ###########################################################################################################################################
 
 
@@ -283,7 +244,7 @@ while (viewVal == 2) {
   int button5Val = digitalRead(button5);
   int button6Val = digitalRead(button6);
 
-  FastLED.show();
+
 
   int potVal = analogRead(A1);
   int dispVal = map(potVal,0,1023,1,6);
@@ -344,81 +305,61 @@ while (viewVal == 2) {
 
 
   if(button1Val == LOW){
-    for(int dot = 0; dot <= NUM_LEDS; dot++)
-     {   leds[0] = CRGB::Cyan;
-         FastLED.show();
-         leds[0] = CRGB::Red;
-         Joystick.setButton(7, 1);
-         delay(50);
-         Joystick.setButton(7, 0);
-         }
+    Joystick.setButton(7, 1);
+    delay(50);
+    Joystick.setButton(7, 0);
+   }
 
-
-
-  }
-
-  if(button2Val == LOW){
-    for(int dot = 0; dot <= NUM_LEDS; dot++)
-     {   leds[1] = CRGB::Blue;
-         FastLED.show();
-         leds[1] = CRGB::Orange;
-         Joystick.setButton(8, 1);
-         delay(50);
-         Joystick.setButton(8, 0);
-         }
 
 
 
-  }
+  if(button2Val == LOW){
+    Joystick.setButton(8, 1);
+    delay(50);
+    Joystick.setButton(8, 0);
+   }
+
+
+
+
   if(button3Val == LOW){
-    for(int dot = 0; dot <= NUM_LEDS; dot++)
-     {   leds[2] = CRGB::Blue;
-         FastLED.show();
-         leds[2] = CRGB::Yellow;
-         Joystick.setButton(9, 1);
-         delay(50);
-         Joystick.setButton(9, 0);
-         }
+    Joystick.setButton(9, 1);
+    delay(50);
+    Joystick.setButton(9, 0);
+   }
 
 
 
-  }
+
   if(button4Val == LOW){
-    for(int dot = 0; dot <= NUM_LEDS; dot++)
-     {   leds[3] = CRGB::Purple;
-         FastLED.show();
-         leds[3] = CRGB::Green;
-         Joystick.setButton(10, 1);
-         delay(50);
-         Joystick.setButton(10, 0);
-         }
+    Joystick.setButton(10, 1);
+    delay(50);
+    Joystick.setButton(10, 0);
+   }
 
 
 
-  }
+
   if(button5Val == LOW){
-    for(int dot = 0; dot <= NUM_LEDS; dot++)
-     {   leds[4] = CRGB::Green;
-         FastLED.show();
-         leds[4] = CRGB::Blue;
-         Joystick.setButton(11, 1);
-         delay(50);
-         Joystick.setButton(11, 0);
-         }
+   Joystick.setButton(11, 1);
+   delay(50);
+   Joystick.setButton(11, 0);
+    }
+
+
+
+  if(button6Val == LOW){
+    Joystick.setButton(12, 1);
+    delay(50);
+    Joystick.setButton(12, 0);
+   }
+
 
 }
 
-if(button6Val == LOW){
-  for(int dot = 0; dot <= NUM_LEDS; dot++)
-   {   leds[4] = CRGB::Green;
-       FastLED.show();
-       leds[4] = CRGB::Blue;
-       Joystick.setButton(12, 1);
-       delay(50);
-       Joystick.setButton(12, 0);
-       }
+// ###########################################################################################################################################
 
-}
-}
-}
+
+
+
 }
