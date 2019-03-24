@@ -15,7 +15,7 @@ Adafruit_SSD1306 display(SCREEN_WIDTH, SCREEN_HEIGHT, &Wire, OLED_RESET);
 
 void setup() {
   Serial.begin(9600);
-
+  pinMode(9, INPUT_PULLUP);
   // SSD1306_SWITCHCAPVCC = generate display voltage from 3.3V internally
   if(!display.begin(SSD1306_SWITCHCAPVCC, 0x3C)) { // Address 0x3D for 128x64
     Serial.println(F("SSD1306 allocation failed"));
@@ -28,11 +28,57 @@ void setup() {
 }
 
 void loop() {
-  display.clearDisplay();
+int potVal = analogRead(A1);
+int dispVal = map(potVal,0,1020,1,5);
 
-  display.setTextSize(1);             // Normal 1:1 pixel scale
+switch (dispVal) {
+  case 1:
+  display.clearDisplay();
+  display.setTextSize(2);             // Normal 1:1 pixel scale
   display.setTextColor(WHITE);        // Draw white text
   display.setCursor(0,0);             // Start at top-left corner
-  display.println(F("Hello, world!!!!"));
+  display.println(F("Pagina 1"));
   display.display();
+  break;
+
+  case 2:
+    display.clearDisplay();
+    display.setTextSize(2);             // Normal 1:1 pixel scale
+    display.setTextColor(WHITE);        // Draw white text
+    display.setCursor(0,0);             // Start at top-left corner
+    display.println(F("Pagina 2"));
+    display.display();
+  break;
+
+  case 3:
+    display.clearDisplay();
+    display.setTextSize(2);             // Normal 1:1 pixel scale
+    display.setTextColor(WHITE);        // Draw white text
+    display.setCursor(0,0);             // Start at top-left corner
+    display.println(F("Pagina 3"));
+    display.display();
+  break;
+
+  case 4:
+    display.clearDisplay();
+    display.setTextSize(2);             // Normal 1:1 pixel scale
+    display.setTextColor(WHITE);        // Draw white text
+    display.setCursor(0,0);             // Start at top-left corner
+    display.println(F("Pagina 4"));
+    display.display();
+  break;
+
+  case 5:
+    display.clearDisplay();
+    display.setTextSize(2);             // Normal 1:1 pixel scale
+    display.setTextColor(WHITE);        // Draw white text
+    display.setCursor(0,0);             // Start at top-left corner
+    display.println(F("Pagina 5"));
+    display.display();
+  break;
+
+}
+
+
+
 }
