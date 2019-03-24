@@ -135,6 +135,62 @@ while (viewVal == 1) {
 
   FastLED.show();
 
+  int potVal = analogRead(A1);
+  int dispVal = map(potVal,0,1023,1,6);
+
+  switch (dispVal) {
+    case 1:
+    display.clearDisplay();
+    display.setTextSize(2);             // Normal 1:1 pixel scale
+    display.setTextColor(WHITE);        // Draw white text
+    display.setCursor(0,0);             // Start at top-left corner
+    display.println(F("Pagina 1"));
+    display.display();
+    viewVal = 1;
+    break;
+
+    case 2:
+      display.clearDisplay();
+      display.setTextSize(2);             // Normal 1:1 pixel scale
+      display.setTextColor(WHITE);        // Draw white text
+      display.setCursor(0,0);             // Start at top-left corner
+      display.println(F("Pagina 2"));
+      display.display();
+      viewVal = 2;
+    break;
+
+    case 3:
+      display.clearDisplay();
+      display.setTextSize(2);             // Normal 1:1 pixel scale
+      display.setTextColor(WHITE);        // Draw white text
+      display.setCursor(0,0);             // Start at top-left corner
+      display.println(F("Pagina 3"));
+      display.display();
+      viewVal = 3;
+    break;
+
+    case 4:
+      display.clearDisplay();
+      display.setTextSize(2);             // Normal 1:1 pixel scale
+      display.setTextColor(WHITE);        // Draw white text
+      display.setCursor(0,0);             // Start at top-left corner
+      display.println(F("Pagina 4"));
+      display.display();
+      viewVal = 4;
+    break;
+
+    case 5:
+      display.clearDisplay();
+      display.setTextSize(2);             // Normal 1:1 pixel scale
+      display.setTextColor(WHITE);        // Draw white text
+      display.setCursor(0,0);             // Start at top-left corner
+      display.println(F("Pagina 5"));
+      display.display();
+      viewVal = 5;
+    break;
+
+  }
+
 
 
   if(button1Val == LOW){
@@ -212,6 +268,157 @@ if(button6Val == LOW){
        Joystick.setButton(6, 0);
        }
 
+}
+
+
+// ###########################################################################################################################################
+
+
+
+while (viewVal == 2) {
+  int button1Val = digitalRead(button1);
+  int button2Val = digitalRead(button2);
+  int button3Val = digitalRead(button3);
+  int button4Val = digitalRead(button4);
+  int button5Val = digitalRead(button5);
+  int button6Val = digitalRead(button6);
+
+  FastLED.show();
+
+  int potVal = analogRead(A1);
+  int dispVal = map(potVal,0,1023,1,6);
+
+  switch (dispVal) {
+    case 1:
+    display.clearDisplay();
+    display.setTextSize(2);             // Normal 1:1 pixel scale
+    display.setTextColor(WHITE);        // Draw white text
+    display.setCursor(0,0);             // Start at top-left corner
+    display.println(F("Pagina 1"));
+    display.display();
+    viewVal = 1;
+    break;
+
+    case 2:
+      display.clearDisplay();
+      display.setTextSize(2);             // Normal 1:1 pixel scale
+      display.setTextColor(WHITE);        // Draw white text
+      display.setCursor(0,0);             // Start at top-left corner
+      display.println(F("Pagina 2"));
+      display.display();
+      viewVal = 2;
+    break;
+
+    case 3:
+      display.clearDisplay();
+      display.setTextSize(2);             // Normal 1:1 pixel scale
+      display.setTextColor(WHITE);        // Draw white text
+      display.setCursor(0,0);             // Start at top-left corner
+      display.println(F("Pagina 3"));
+      display.display();
+      viewVal = 3;
+    break;
+
+    case 4:
+      display.clearDisplay();
+      display.setTextSize(2);             // Normal 1:1 pixel scale
+      display.setTextColor(WHITE);        // Draw white text
+      display.setCursor(0,0);             // Start at top-left corner
+      display.println(F("Pagina 4"));
+      display.display();
+      viewVal = 4;
+    break;
+
+    case 5:
+      display.clearDisplay();
+      display.setTextSize(2);             // Normal 1:1 pixel scale
+      display.setTextColor(WHITE);        // Draw white text
+      display.setCursor(0,0);             // Start at top-left corner
+      display.println(F("Pagina 5"));
+      display.display();
+      viewVal = 5;
+    break;
+
+  }
+
+
+
+  if(button1Val == LOW){
+    for(int dot = 0; dot <= NUM_LEDS; dot++)
+     {   leds[0] = CRGB::Cyan;
+         FastLED.show();
+         leds[0] = CRGB::Red;
+         Joystick.setButton(7, 1);
+         delay(50);
+         Joystick.setButton(7, 0);
+         }
+
+
+
+  }
+
+  if(button2Val == LOW){
+    for(int dot = 0; dot <= NUM_LEDS; dot++)
+     {   leds[1] = CRGB::Blue;
+         FastLED.show();
+         leds[1] = CRGB::Orange;
+         Joystick.setButton(8, 1);
+         delay(50);
+         Joystick.setButton(8, 0);
+         }
+
+
+
+  }
+  if(button3Val == LOW){
+    for(int dot = 0; dot <= NUM_LEDS; dot++)
+     {   leds[2] = CRGB::Blue;
+         FastLED.show();
+         leds[2] = CRGB::Yellow;
+         Joystick.setButton(9, 1);
+         delay(50);
+         Joystick.setButton(9, 0);
+         }
+
+
+
+  }
+  if(button4Val == LOW){
+    for(int dot = 0; dot <= NUM_LEDS; dot++)
+     {   leds[3] = CRGB::Purple;
+         FastLED.show();
+         leds[3] = CRGB::Green;
+         Joystick.setButton(10, 1);
+         delay(50);
+         Joystick.setButton(10, 0);
+         }
+
+
+
+  }
+  if(button5Val == LOW){
+    for(int dot = 0; dot <= NUM_LEDS; dot++)
+     {   leds[4] = CRGB::Green;
+         FastLED.show();
+         leds[4] = CRGB::Blue;
+         Joystick.setButton(11, 1);
+         delay(50);
+         Joystick.setButton(11, 0);
+         }
+
+}
+
+if(button6Val == LOW){
+  for(int dot = 0; dot <= NUM_LEDS; dot++)
+   {   leds[4] = CRGB::Green;
+       FastLED.show();
+       leds[4] = CRGB::Blue;
+       Joystick.setButton(12, 1);
+       delay(50);
+       Joystick.setButton(12, 0);
+       }
+
+}
 }
 }
 }
