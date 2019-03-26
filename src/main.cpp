@@ -34,6 +34,13 @@ int button6 = 9;
 
 int interVal = 250;
 
+int button1Val = 1;
+int button2Val = 1;
+int button3Val = 1;
+int button4Val = 1;
+int button5Val = 1;
+int button6Val = 1;
+
 
 void setup() {
   Serial.begin(9600);
@@ -55,6 +62,67 @@ void setup() {
   Joystick.begin();
 
 
+}
+
+void pageCheck(){
+
+
+
+  int potVal = analogRead(A1);
+  int dispVal = map(potVal,0,1023,1,6);
+
+  switch (dispVal) {
+    case 1:
+    display.clearDisplay();
+    display.setTextSize(2);             // Normal 1:1 pixel scale
+    display.setTextColor(WHITE);        // Draw white text
+    display.setCursor(0,0);             // Start at top-left corner
+    display.println(F("Pagina 1"));
+    display.display();
+    viewVal = 1;
+    break;
+
+    case 2:
+      display.clearDisplay();
+      display.setTextSize(2);             // Normal 1:1 pixel scale
+      display.setTextColor(WHITE);        // Draw white text
+      display.setCursor(0,0);             // Start at top-left corner
+      display.println(F("Pagina 2"));
+      display.display();
+      viewVal = 2;
+    break;
+
+    case 3:
+      display.clearDisplay();
+      display.setTextSize(2);             // Normal 1:1 pixel scale
+      display.setTextColor(WHITE);        // Draw white text
+      display.setCursor(0,0);             // Start at top-left corner
+      display.println(F("Pagina 3"));
+      display.display();
+      viewVal = 3;
+    break;
+
+    case 4:
+      display.clearDisplay();
+      display.setTextSize(2);             // Normal 1:1 pixel scale
+      display.setTextColor(WHITE);        // Draw white text
+      display.setCursor(0,0);             // Start at top-left corner
+      display.println(F("Pagina 4"));
+      display.display();
+      viewVal = 4;
+    break;
+
+    case 5:
+      display.clearDisplay();
+      display.setTextSize(2);             // Normal 1:1 pixel scale
+      display.setTextColor(WHITE);        // Draw white text
+      display.setCursor(0,0);             // Start at top-left corner
+      display.println(F("Pagina 5"));
+      display.display();
+      viewVal = 5;
+    break;
+
+  }
 }
 
 void loop() {
@@ -363,6 +431,7 @@ while (viewVal == 2) {
 
 
 while (viewVal == 3) {
+
   int button1Val = digitalRead(button1);
   int button2Val = digitalRead(button2);
   int button3Val = digitalRead(button3);
@@ -370,65 +439,7 @@ while (viewVal == 3) {
   int button5Val = digitalRead(button5);
   int button6Val = digitalRead(button6);
 
-
-
-  int potVal = analogRead(A1);
-  int dispVal = map(potVal,0,1023,1,6);
-
-  switch (dispVal) {
-    case 1:
-    display.clearDisplay();
-    display.setTextSize(2);             // Normal 1:1 pixel scale
-    display.setTextColor(WHITE);        // Draw white text
-    display.setCursor(0,0);             // Start at top-left corner
-    display.println(F("Pagina 1"));
-    display.display();
-    viewVal = 1;
-    break;
-
-    case 2:
-      display.clearDisplay();
-      display.setTextSize(2);             // Normal 1:1 pixel scale
-      display.setTextColor(WHITE);        // Draw white text
-      display.setCursor(0,0);             // Start at top-left corner
-      display.println(F("Pagina 2"));
-      display.display();
-      viewVal = 2;
-    break;
-
-    case 3:
-      display.clearDisplay();
-      display.setTextSize(2);             // Normal 1:1 pixel scale
-      display.setTextColor(WHITE);        // Draw white text
-      display.setCursor(0,0);             // Start at top-left corner
-      display.println(F("Pagina 3"));
-      display.display();
-      viewVal = 3;
-    break;
-
-    case 4:
-      display.clearDisplay();
-      display.setTextSize(2);             // Normal 1:1 pixel scale
-      display.setTextColor(WHITE);        // Draw white text
-      display.setCursor(0,0);             // Start at top-left corner
-      display.println(F("Pagina 4"));
-      display.display();
-      viewVal = 4;
-    break;
-
-    case 5:
-      display.clearDisplay();
-      display.setTextSize(2);             // Normal 1:1 pixel scale
-      display.setTextColor(WHITE);        // Draw white text
-      display.setCursor(0,0);             // Start at top-left corner
-      display.println(F("Pagina 5"));
-      display.display();
-      viewVal = 5;
-    break;
-
-  }
-
-
+  pageCheck();
 
   if(button1Val == LOW){
     Joystick.setButton(13, 1);
@@ -479,6 +490,10 @@ while (viewVal == 3) {
     delay(interVal);
     Joystick.setButton(18, 0);
    }
+
+
+
+
 
 
 }
